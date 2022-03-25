@@ -1,24 +1,17 @@
 # Elden-Ring-AHK
-Autohotkey script for Elden Ring
+*Autohotkey script for Elden Ring*
 
-Dedicated Run and Roll keys.
+Download:  https://raw.githubusercontent.com/DarKcyde0/Elden-Ring-AHK/main/EldenRing.ahk
 
-No delay roll (happens on key down).
+ - Dedicated Run and Roll keys.
+ - No delay roll (happens on key down).
+ - Dedicated back-step that works while moving.
+ - 2-hand keys.
+ - Quick pocket (all 6) and gesture keys.
+ - Exit to Main Menu macro.
+ - Many Quality-of-life features to reduce consolitis.
 
-Dedicated back-step that works while moving.
-
-2-hand keys.
-
-Quick pocket (all 6) and gesture keys.
-
-Exit to Main Menu macro.
-
-Many Quality-of-life features to reduce consolitis.
-
-
-My key map:
-
-
+## My key map:
 Movement Control: LAlt
 
 Movement:  WASD
@@ -54,7 +47,8 @@ Use Item: Middle click
 Event action: E
 
 
-Mouse mapping (done through mouse software)
+## Mouse mapping 
+(done through mouse software)
 
 Scroll Left: Left arrow
 
@@ -74,7 +68,7 @@ Top back: X
 I recommend not blocking the keyboard keys around WASD because of the menu functions.  You could do without ZXCV, but QERTYF are all needed.
 
 
-Will this get me banned???
+## Will this get me banned???
 
 EAC has no history of banning autohotkey users.  Since AHK has so many legitimate uses, they cannot simply ban because it is running on your PC.
 
