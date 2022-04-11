@@ -3,12 +3,19 @@
 
 Download:  https://raw.githubusercontent.com/DarKcyde0/Elden-Ring-AHK/main/EldenRing.ahk
 
+Depends on https://github.com/DarKcyde0/TapHoldManager - fork modified to work on keydown.
+
+  Install in %userprofile%\Documents\AutoHotkey\Lib
+
  - Dedicated Run and Roll keys.
  - No delay roll (happens on key down).
  - Dedicated back-step that works while moving.
  - 2-hand keys.
  - Quick pocket (all 6) and gesture keys.
  - Exit to Main Menu macro.
+ - Pause game macro (actually pauses game in help menu).
+ - Teleport to Roundtable Hold macro.
+ - Map key closes map (Thanks EMU Light for the idea).
  - Many Quality-of-life features to reduce consolitis.
 
 ## My key map:
@@ -54,19 +61,17 @@ Scroll Left: Left arrow
 
 Scroll Right: Right arrow
 
-Back: Q
+Back: U (remaps to Q)
 
 Forward: R
 
-Side button: E
+Side button: I (remaps to E)
 
 Top forward (2ndary fwd?): Z
 
 Top back: X
 
-
-I recommend not blocking the keyboard keys around WASD because of the menu functions.  You could do without ZXCV, but QERTYF are all needed.
-
+You can easily change the keys to your preference, my mapping provided to help work out how I use it.
 
 ## Will this get me banned???
 
