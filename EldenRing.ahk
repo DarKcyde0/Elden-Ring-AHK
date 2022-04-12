@@ -22,15 +22,15 @@ global RollDashKey := "p"
 global UseKey := "o"
 global DisableWASD := 0
 global tick := ""
-global runtimer := ""
 
 ;thm := new TapHoldManager([ <tapTime := -1>, holdTime := -1, <maxTaps := -1>, <prefix := "$">, <window := ""> ])
 TapMgr := new TapHoldManager(-1,-1,2,"*","ahk_exe eldenring.exe")
 
-TapMgr.Add("MButton",Func("MbuttonMgr"))
-TapMgr.Add("z",Func("z_func"))
-TapMgr.Add("c",Func("c_func"))
-TapMgr.Add("f",Func("f_func"))
+TapMgr.Add("MButton",Func("MbuttonMgr"),,1)
+TapMgr.Add("z",Func("z_func"),,1)
+TapMgr.Add("c",Func("c_func"),,1)
+TapMgr.Add("f",Func("f_func")150,,1)
+TapMgr.Add("CapsLock",Func("Caps_func"),100,150,1)       ;try to reduce lag on tap, defaults noticably slow
 ; TapMgr.Add("lshift",Func("run_func"),200,500,2,"~*")
 
 TapMgr.Add("w",Func("DoubleTapMoves_Run").Bind("w"),-1,-1,2,"~*")
@@ -55,12 +55,11 @@ F12::Suspend     ;Toggle on/off
 `::ToggleMap()
 LWIN::send {shift down}{space down}					;alternate jump
 LWIN up::send {shift up}{space up}
-*CapsLock:: Send {Ctrl down}						;crouch for easy press in combat
-*CapsLock up:: Send {Ctrl up}						;separate down/up more reliable
+; *CapsLock:: Send {Ctrl down}						;crouch for easy press in combat
+; *CapsLock up:: Send {Ctrl up}						;separate down/up more reliable
 tab::esc											;menu
 <!tab::alttab										;overrides ESC when doing alt-tab
 <!F4::send {LAlt down}{F4 down}{LAlt up}{F4 up}  
-
 
 ;QoL for the menus
 enter::e
@@ -226,6 +225,10 @@ QuickUse(key) {
 	return
 }
 
+Toggle(key) {
+	send % GetKeyState(key) ? "{" key " up}" : "{" key " down}"
+}
+
 ; Function that releases all the letters in the str variable
 ReleaseKeys(str){
     Loop, Parse, % str  ; Loop through each character of the variable str
@@ -307,12 +310,14 @@ f_func(isHold, taps, keydown){
 
 ;BackStep - usable while moving
 BackStep() {
-	Thread NoTimers, true  ;running timer could interrupt
+	Critical ;running timer could interrupt
 	if (IsMoving()){
 		ReleaseKeys("wasd")
 		DisableWASD := true
-		send {%RollDashKey%	up} ; in case running
-		sleep 25
+		if (GetKeyState(RollDashKey)) {
+			send {%RollDashKey%	up}
+			sleep 25
+		}
 	}
 	TapKey(RollDashKey)
 	sleep 25
@@ -325,7 +330,17 @@ BackStep() {
 				Send {%A_LoopField% down}
 		}
 	}
-	Thread NoTimers, false
+}
+
+; Tap=Crouch, Hold=walk
+; Never needed both at same time, same finger as run, good place for walk.
+Caps_Func(isHold, taps, keydown){
+	if (taps && !isHold && keydown==-1)  ;tap
+		TapKey("LCtrl")
+	if (isHold && keydown)
+		send {LAlt down}
+	if (isHold && !keydown)
+		send {LAlt up}
 }
 
 ; WASD gets DoubleTap ability
